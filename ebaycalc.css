@@ -1,0 +1,18 @@
+.top-header{
+    width: 500px;
+    margin: auto;
+}
+
+.main{
+    width: 500px;
+    padding-top:50px ;
+}
+
+.col-centered{
+    margin: 0 auto;
+    float: none;
+}
+
+.result{
+    width: 500px;
+}

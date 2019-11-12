@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Ebay Fee Calculator</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="ebaycalc.css">
+  </head>
+  <body>
+
+    <div class="container">
+        <div class="main m-auto">
+            <div class="top-header text-center py-2 border-bottom bg-light">
+                <h2>Ebay and PayPal Fee Calculator</h2>
+            </div>
+
+            <div class="calculator">
+               <form>
+
+                   <div class="row d-flex border-bottom">
+                       <div class="col-md-6 mt-2 align-self-center">
+                           <h5>Sold Price</h5>
+                           <h6 class="text-muted"><em>sale price not including shipping charge</em></h6>
+                       </div>
+                       <div class="col-md-6 align-self-center">
+                           <form class="d-flex" action="">
+                               <input type="number" class="form-control" id="soldPrice" step="0.01" value="0" onchange="ebayFee()">
+                           </form>
+                       </div> 
+                   </div>
+                        
+               
+               
+                    <div class="row d-flex border-bottom">
+                            <div class="col-md-6 mt-2 align-self-center">
+                                <h5>Shipping Charge</h5>
+                                <h6 class="text-muted"><em>amount charged to buyer</em></h6>
+                            </div>
+                            <div class="col-md-6 align-self-center">
+                                <form class="d-flex" action="">
+                                    <input type="number" class="form-control " id="shippingCharge" step="0.01" value="0" onchange="ebayFee()">
+                                </form>
+                            </div> 
+                    </div>
+
+
+                    <div class="row d-flex border-bottom">
+                            <div class="col-md-6 mt-2 align-self-center">
+                                <h5>Shipping Cost</h5>
+                                <h6 class="text-muted"><em>price you paid for shipping</em></h6>
+                            </div>
+                            <div class="col-md-6 align-self-center">
+                                <form class="d-flex" action="">
+                                    <input type="number" class="form-control " id="shippingCost" step="0.01" value="0" onchange="ebayFee()">
+                                </form>
+                            </div> 
+                    </div>
+
+
+                    <div class="row d-flex border-bottom">
+                            <div class="col-md-6 mt-2 align-self-center">
+                                <h5>Item Cost</h5>
+                                <h6 class="text-muted"><em>price you paid for item</em></h6>
+                            </div>
+                            <div class="col-md-6 align-self-center">
+                                <form class="d-flex" action="">
+                                    <input type="number" class="form-control " id="itemCost" step="0.01" value="0" onchange="ebayFee()">
+                                </form>
+                            </div> 
+                    </div>
+
+
+                    <div class="row d-flex border-bottom">
+                            <div class="col-md-6 mt-2 align-self-center">
+                                <h5>eBay Store?</h5>
+                                <h6 class="text-muted"><em>subscription discount</em></h6>
+                            </div>
+                            <div class="col-md-6 align-self-center">
+                                <form class="d-flex" action="">
+                                        <select class="form-control" id="ebayStore">
+                                                <option>No</option>
+                                                <option>Yes</option>
+                                        </select>
+                                </form>
+                            </div> 
+                    </div>
+
+
+                    <div class="row d-flex border-bottom">
+                            <div class="col-md-6 mt-2 align-self-center">
+                                <h5>Top Rated Seller?</h5>
+                                <h6 class="text-muted"><em>discount</em></h6>
+                            </div>
+                            <div class="col-md-6 align-self-center">
+                                <form class="d-flex" action="">
+                                        <select class="form-control" id="topRatedSeller">
+                                                <option>No</option>
+                                                <option>Yes</option>
+                                        </select>
+                                </form>
+                            </div> 
+                    </div>
+
+                    
+                    
+               </form>
+
+               <div class="result border-bottom bg-light">
+                   <div class="row">
+                       <div class="col-md-6 text-center mt-3">
+                           <h5 id="ebayFee">Ebay Fee:</h5>
+                       </div>
+                       <div class="col-md-6 text-center mt-3">
+                           <h5 id="payPalFee">PayPal Fee:</h5>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="col text-center mt-2">
+                           <h4 id="totalProfit">Total Profit:</h4>
+                       </div>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+      
+    <!-- Optional JavaScript -->
+
+    <script>
+    /*
+        document.getElementById('soldPrice').addEventListener('input', function(e){
+            let soldPrice = e.target.value;
+            console.log(soldPrice);
+
+        })
+
+        document.getElementById('shippingCharge').addEventListener('input', function(e){
+            let shippingCharge = e.target.value;
+            console.log(shippingCharge);
+
+        })
+
+        document.getElementById('shippingCost').addEventListener('input', function(e){
+            let shippingCost = e.target.value;
+            console.log(shippingCost);
+
+        })
+
+        document.getElementById('itemCost').addEventListener('input', function(e){
+            let itemCost = e.target.value;
+            console.log(itemCost);
+
+        })
+    */
+
+    
+
+
+function ebayFee(soldPrice,sheepingCharge,sheepingCost,itemCost){
+
+    var soldPrice = parseFloat(document.getElementById("soldPrice").value);
+    var shippingCharge = parseFloat(document.getElementById("shippingCharge").value);
+    var shippingCost = parseFloat(document.getElementById("shippingCost").value);
+    var itemCost = parseFloat(document.getElementById('itemCost').value);
+       
+   var totalProfit = document.getElementById('totalProfit');
+   var ebayFeeResult = document.getElementById('ebayFee');
+   var payPalFeeInput = document.getElementById('payPalFee');
+
+
+ var eBayFee = 0.10;
+ var payPalFee = 0.034;
+ var totalCharge = soldPrice + shippingCharge;
+ var totalCosts = itemCost + sheepingCost;
+
+ var eBayFeeValue = ((soldPrice+shippingCharge)*eBayFee);
+ var payPalFeeValue = (soldPrice * payPalFee)+0.2;
+ var profit = (totalCharge - itemCost) - ((soldPrice * eBayFee)+payPalFeeValue);
+
+ebayFeeResult.innerHTML = "<h5>Ebay Fee:</h5>" + eBayFeeValue.toFixed(2);
+totalProfit.innerHTML = "<h4>Total Profit:</h4>" + profit.toFixed(2);
+payPalFeeInput.innerHTML = "<h5>PayPal Fee:</h5>" + payPalFeeValue.toFixed(2);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
